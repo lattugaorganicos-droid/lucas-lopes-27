@@ -557,7 +557,9 @@
     }
 
     function copyLink() {
-        alert('Para compartilhar:\n\n1. Abra o WhatsApp\n2. Escolha o contato ou grupo\n3. Clique no ícone de anexo 📎\n4. Selecione "Documento"\n5. Envie o arquivo lucas-lopes-27anos.html\n\nO destinatário só precisa abrir o arquivo no celular ou computador! ✓');
+        navigator.clipboard.writeText('https://lucas-lopes-27.vercel.app/').then(() => {
+            alert('Link copiado! ✓\nCole no WhatsApp, Instagram ou onde quiser.');
+        });
     }
 
     /* ─── INIT ─── */

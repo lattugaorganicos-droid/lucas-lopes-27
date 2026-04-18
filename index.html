@@ -272,7 +272,7 @@
     <!-- SPLASH -->
     <div class="splash" id="splash" onclick="enterSite()">
         <div class="splash-content">
-            <img class="splash-photo" src="momentos (1).jpeg" alt="Lucas">
+            <img class="splash-photo" src="foto.jpeg" alt="Lucas">
             <h1>Lucas Lopes</h1>
             <div class="splash-age">27 Anos</div>
             <div class="splash-div"></div>
@@ -284,7 +284,7 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <img class="hero-photo" src="momentos (1).jpeg" alt="Lucas">
+            <img class="hero-photo" src="foto.jpeg" alt="Lucas">
             <h1>LUCAS LOPES</h1>
             <div class="hero-age">27 Anos</div>
             <div class="hero-date">18 de Abril de 1999</div>
@@ -297,7 +297,7 @@
             <p>Tem dias que ainda vemos aquele menino pequeno, brincando na cozinha com o cabo da vassoura na mão. Você criava histórias, criava mundos. Sempre imaginando, sempre sonhando.</p>
             <p>Depois veio a adolescência. Aquele computador, aquele controle na mão, aquela paixão que você tem pela tecnologia e pelos games. Nós vimos você crescer, mudando, mas mantendo sempre aquela honestidade que você nunca escondeu.</p>
             <p>Tem um dia que você saiu de casa. Casou com a Carol em novembro e construiu sua própria vida. Para a gente, aquilo não foi uma despedida, foi um começo. Porque você levou a gente com você — os valores, a honestidade, aquele jeito divertido de ser. Você virou um homem correto, honesto, divertido, trabalhador. E a gente não poderíamos estar mais orgulhosos.</p>
-            <p>Neste dia 27, a gente só tem a agradecer. Obrigado por nos mostrar o que é amar de verdade. Obrigado por ser exatamente quem você é. E obrigado por, mesmo tendo saído de casa, você continuar sendo nossa criança.</p>
+            <p>Neste dia 18, a gente só tem a agradecer. Obrigado por ser exatamente quem você é. E obrigado por, mesmo tendo saído de casa, você continuar sendo nossa criança.</p>
             <p class="assinatura">Com todo nosso coração,<br>Sua Família ❤️</p>
         </div>
     </section>
@@ -379,7 +379,7 @@
             <div class="section-title-bar"></div>
             <div style="display:flex;justify-content:center;">
                 <div class="instagram-card">
-                    <img class="instagram-avatar" src="momentos (1).jpeg" alt="Lucas">
+                    <img class="instagram-avatar" src="foto.jpeg" alt="Lucas">
                     <div class="instagram-handle">@loppes_pg</div>
                     <p class="instagram-msg">Vai lá deixar um parabéns para o Lucas no Instagram dele! Vai fazer o dia dele ainda mais especial. 🎂</p>
                     <a class="btn-instagram" href="https://www.instagram.com/loppes_pg?igsh=cmM1djBhcHNydjU0" target="_blank">📸 Abrir Instagram</a>
@@ -506,11 +506,27 @@
 
     /* ─── REVEAL AO ROLAR ─── */
     function setupReveal() {
-        const items = document.querySelectorAll('.reveal');
-        const obs = new IntersectionObserver((entries) => {
+        // Seções inteiras
+        const sections = document.querySelectorAll('.reveal');
+        const obsS = new IntersectionObserver((entries) => {
             entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
         }, { threshold: 0.1 });
-        items.forEach(el => obs.observe(el));
+        sections.forEach(el => obsS.observe(el));
+
+        // Parágrafos da dedicatória um a um
+        const paras = document.querySelectorAll('.dedicatoria p');
+        const obsP = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if(e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    obsP.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        paras.forEach((p, i) => {
+            p.style.transitionDelay = (i * 0.15) + 's';
+            obsP.observe(p);
+        });
     }
 
     /* ─── SPLASH ─── */
